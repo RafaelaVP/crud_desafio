@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  postgres-compose:
+    image: postgres
+    environment:
+      POSTGRES_USERNAME: "postgres"
+      POSTGRES_PASSWORD: "123456"
+    ports:
+      - "5432:5432"
+    volumes:
+      - C:/Users/rafaela.valerio/Documents/PostgreSQL:/var/lib/postgresql/data
+    
+      
