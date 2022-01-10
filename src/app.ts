@@ -1,12 +1,11 @@
-import "reflect-metadata"
-import express from "express"
+import 'reflect-metadata'
+import express from 'express'
+import { routes } from './api/routes';
 
-class App {
-    public server: express.Application
-    constructor() {
-      this.server = express();     
-      
-    }
-}
+const app = express();
 
-export = new App().server;
+app.use(express.json());
+
+app.use(routes)
+
+export {app}
