@@ -14,5 +14,43 @@ export class CityController {
     }
   }
 
+  async findAll(request: Request, response: Response) {
+    try {
+      const result = await cityService.findAll(request.query);
+      return response.status(201).json(result);
+    } catch (err) {
+      return response.status(400).json(err);
+    }
+  }
+
+  async getById(request: Request, response: Response) {
+    try {
+      const result = await cityService.findOne(request.params);
+      return response.status(201).json(result);
+    } catch (err) {
+      return response.status(400).json(err);
+    }
+  }
+
+  async update(request: Request, response: Response) {
+    try {
+      const {id} = request.params
+      const payload = request.body
+      const result = await cityService.update(id, payload)
+      return response.status(201).json(result);
+    } catch (err) {
+      return response.status(400).json(err);
+    }
+  }
+
+  async delete(request: Request, response: Response) {
+    try {
+      const result = await cityService.delete(request.params)
+      return response.status(204).json(result);
+    } catch (err) {
+      return response.status(404).json(err);
+    }
+  }
+
 }
 
