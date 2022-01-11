@@ -1,6 +1,4 @@
 import {Entity, Column, CreateDateColumn, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm"
-import { City } from "./City";
-
 
 export type genderType = "female"| "male" | "other"
 
@@ -16,17 +14,13 @@ export class Client {
     gender: string;
 
     @Column()
-    city_id: string;
-
-    @ManyToOne(()=> City)
-    @JoinColumn({name:"city_id"})
-    city: City
+    city: string;
 
     @Column()
-    birthdate: Date
+    birthdate: Date;
 
     @Column()
-    age: number
+    age: number;
 
     @CreateDateColumn()
     created_at: Date;
