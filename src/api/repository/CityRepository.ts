@@ -15,8 +15,10 @@ export class CityRepository {
     return result;
   }
   async findCity(city): Promise <City | Error > {
-    const result = await getRepository(City).findOne(city);
-    return result;
+    const result = await getRepository(City).find({
+      relations:["City"],
+    });
+    return result
   }
   async update(_id, payload) {
     return await getRepository(City).update(_id, payload);
