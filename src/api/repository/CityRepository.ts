@@ -14,6 +14,10 @@ export class CityRepository {
     const result = await getRepository(City).findOne(_id);
     return result;
   }
+  async findCity(city): Promise <City | Error > {
+    const result = await getRepository(City).findOne(city);
+    return result;
+  }
   async update(_id, payload) {
     return await getRepository(City).update(_id, payload);
   }

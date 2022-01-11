@@ -23,8 +23,8 @@ export class CreateClients1641919737928 implements MigrationInterface {
                         type:"varchar"
                     },
                     {
-                        name: "city",
-                        type:"varchar"
+                        name: "city_home",
+                        type:"int"
                     },
                     {
                         name:"birthdate",
@@ -34,12 +34,21 @@ export class CreateClients1641919737928 implements MigrationInterface {
                         name:"age",
                         type:"numeric"
                     },
+                    
                     {
                         name:"created_at",
                         type: "timestamp",
                         default: "now()"
                     },
                 ],
+              foreignKeys: [
+                {
+                    name: "fk_clients_city",
+                    columnNames: ["city_home"],
+                    referencedTableName: "cities",
+                    referencedColumnNames:["id"]
+                }
+            ]
             })
         );
     }

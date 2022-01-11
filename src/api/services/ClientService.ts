@@ -1,11 +1,15 @@
 import { Client } from "../../entities/Client";
+import { CityRepository } from "../repository/CityRepository";
 import { ClientRepository } from "../repository/ClientRepository";
 
 
 const clientRepository = new ClientRepository
-
+const cityRepository = new CityRepository
 export class ClientService {
   async create(payload): Promise<Client | Error> {
+    const {city_home} = payload
+    const city = await cityRepository.findCity(city_home)
+    console.log(city)
     return await clientRepository.create(payload);   
   }
   async findAll(payload): Promise<Client[] | Error> {
