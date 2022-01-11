@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {Generated, MigrationInterface, QueryRunner, Table} from "typeorm";
 
 export class CreateClients1641778591201 implements MigrationInterface {
 
@@ -9,8 +9,9 @@ export class CreateClients1641778591201 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "uuid",
-                        isPrimary: true
+                        type: "int",
+                        isPrimary: true,
+                        isGenerated:true
                     },
                     {
                         name:"name",
@@ -23,7 +24,7 @@ export class CreateClients1641778591201 implements MigrationInterface {
                     },
                     {
                         name: "city_id",
-                        type:"uuid"
+                        type:"int"
                     },
                     {
                         name:"birthdate",
