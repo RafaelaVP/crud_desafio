@@ -17,7 +17,7 @@ export class CityController {
   async findAll(request: Request, response: Response) {
     try {
       const result = await cityService.findAll(request.query);
-      return response.status(201).json(result);
+      return response.status(200).json(result);
     } catch (err) {
       return response.status(400).json(err);
     }
@@ -26,7 +26,7 @@ export class CityController {
   async getById(request: Request, response: Response) {
     try {
       const result = await cityService.findOne(request.params);
-      return response.status(201).json(result);
+      return response.status(200).json(result);
     } catch (err) {
       return response.status(400).json(err);
     }
@@ -37,7 +37,7 @@ export class CityController {
       const { id } = request.params;
       const payload = request.body;
       const result = await cityService.update(id, payload);
-      return response.status(201).json(result);
+      return response.status(200).json(result);
     } catch (err) {
       return response.status(400).json(err);
     }
