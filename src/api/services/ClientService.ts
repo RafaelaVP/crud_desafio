@@ -1,4 +1,3 @@
-import { City } from '../../entities/City';
 import { Client } from '../../entities/Client';
 import { ClientRepository } from '../repository/ClientRepository';
 
@@ -9,7 +8,7 @@ export class ClientService {
     return clientRepository.create(payload);
   }
 
-  async findAll(payload): Promise<City[] | Error> {
+  async findAll(payload): Promise<Client[] | Error> {
     const filter = {
       where: payload,
       relations: ['city']
