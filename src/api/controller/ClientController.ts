@@ -25,7 +25,7 @@ export class ClientController {
   async getById(request: Request, response: Response) {
     try {
       const result = await clientService.findOne(request.params);
-      return response.status(201).json(result);
+      return response.status(200).json(result);
     } catch (err) {
       return response.status(400).json(err);
     }
