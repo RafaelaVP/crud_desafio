@@ -1,4 +1,5 @@
 import { getRepository } from 'typeorm';
+
 import { Client } from '../../entities/Client';
 
 export class ClientRepository {

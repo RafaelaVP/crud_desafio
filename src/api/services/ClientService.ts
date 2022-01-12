@@ -1,19 +1,20 @@
+import { City } from '../../entities/City';
 import { Client } from '../../entities/Client';
-import { CityRepository } from '../repository/CityRepository';
 import { ClientRepository } from '../repository/ClientRepository';
 
 const clientRepository = new ClientRepository();
-const cityRepository = new CityRepository();
+
 export class ClientService {
   async create(payload): Promise<Client | Error> {
-    const { cityHome } = payload;
-    const city = await cityRepository.findCity({ city: cityHome });
-    console.log(city);
     return clientRepository.create(payload);
   }
 
-  async findAll(payload): Promise<Client[] | Error> {
-    const clients = await clientRepository.find(payload);
+  async findAll(payload): Promise<City[] | Error> {
+    const filter = {
+      where: payload,
+      relations: ['city']
+    };
+    const clients = await clientRepository.find(filter);
     return clients;
   }
 
