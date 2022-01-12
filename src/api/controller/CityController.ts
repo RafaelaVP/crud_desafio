@@ -1,6 +1,6 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 
-import {CityService} from '../services/CityService';
+import { CityService } from '../services/CityService';
 
 const cityService = new CityService();
 
@@ -34,9 +34,9 @@ export class CityController {
 
   async update(request: Request, response: Response) {
     try {
-      const {id} = request.params
-      const payload = request.body
-      const result = await cityService.update(id, payload)
+      const { id } = request.params;
+      const payload = request.body;
+      const result = await cityService.update(id, payload);
       return response.status(201).json(result);
     } catch (err) {
       return response.status(400).json(err);
@@ -45,12 +45,10 @@ export class CityController {
 
   async delete(request: Request, response: Response) {
     try {
-      const result = await cityService.delete(request.params)
+      const result = await cityService.delete(request.params);
       return response.status(204).json(result);
     } catch (err) {
       return response.status(404).json(err);
     }
   }
-
 }
-

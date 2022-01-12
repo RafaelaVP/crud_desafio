@@ -1,18 +1,16 @@
-import {Entity, Column, CreateDateColumn, PrimaryColumn, PrimaryGeneratedColumn, Generated } from "typeorm"
+import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity("cities")
+@Entity('cities')
 export class City {
-    
-    @PrimaryGeneratedColumn()
-    id: number;
-    
-    @Column()
-    city: string;
-    
-    @Column()
-    state: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @CreateDateColumn()
-    created_at: Date;
-   
+  @Column()
+  city: string;
+
+  @Column()
+  state: string;
+
+  @CreateDateColumn()
+  created_at: Date;
 }

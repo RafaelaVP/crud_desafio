@@ -1,7 +1,7 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import { ClientService } from '../services/ClientService';
 
-const clientService = new ClientService
+const clientService = new ClientService();
 
 export class ClientController {
   async create(request: Request, response: Response) {
@@ -33,9 +33,9 @@ export class ClientController {
 
   async update(request: Request, response: Response) {
     try {
-      const {id} = request.params
-      const payload = request.body
-      const result = await clientService.update(id, payload)
+      const { id } = request.params;
+      const payload = request.body;
+      const result = await clientService.update(id, payload);
       return response.status(200).json(result);
     } catch (err) {
       return response.status(400).json(err);
@@ -44,11 +44,10 @@ export class ClientController {
 
   async delete(request: Request, response: Response) {
     try {
-      const result = await clientService.delete(request.params)
+      const result = await clientService.delete(request.params);
       return response.status(204).json(result);
     } catch (err) {
       return response.status(404).json(err);
     }
   }
-
 }

@@ -1,32 +1,30 @@
-import {Entity, Column, CreateDateColumn, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm"
-import { City } from "./City";
+import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { City } from './City';
 
-export type genderType = "female"| "male" | "other"
-
-@Entity("clients")
+@Entity('clients')
 export class Client {
-    @PrimaryColumn()
-    id: number;
-    
-    @Column()
-    name: string;
-    
-    @Column()
-    gender: string;
+  @PrimaryColumn()
+  id: number;
 
-    @Column()
-    city_home: string;
+  @Column()
+  name: string;
 
-    @ManyToOne(() => City)
-    @JoinColumn({name: "city_home"})
-    city: City;
+  @Column()
+  gender: string;
 
-    @Column()
-    birthdate: Date;
+  @Column()
+  city_home: string;
 
-    @Column()
-    age: number;
+  @ManyToOne(() => City)
+  @JoinColumn({ name: 'city_home' })
+  city: City;
 
-    @CreateDateColumn()
-    created_at: Date;
+  @Column()
+  birthdate: Date;
+
+  @Column()
+  age: number;
+
+  @CreateDateColumn()
+  created_at: Date;
 }
