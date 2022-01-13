@@ -10,6 +10,6 @@ const cityRouter = Router();
 cityRouter.post('/cities', validCreate, new CityController().create);
 cityRouter.get('/cities', validGet, new CityController().findAll);
 cityRouter.get('/cities/:id', validId, new CityController().getById);
-cityRouter.put('/cities/:id', validUpdate, new CityController().update);
-cityRouter.delete('/cities/:id', new CityController().delete);
+cityRouter.put('/cities/:id', validUpdate, validId, new CityController().update);
+cityRouter.delete('/cities/:id', validId, new CityController().delete);
 export { cityRouter };
