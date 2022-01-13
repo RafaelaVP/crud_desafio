@@ -3,7 +3,7 @@ import Joi from 'joi';
 export = async (req, res, next) => {
   try {
     const entities = Joi.object({
-      id: Joi.number().min(1).max(10)
+      id: Joi.number().min(1).max(100)
     });
 
     const { error } = await entities.validate(req.params, { abortEarly: false });

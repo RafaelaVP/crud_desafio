@@ -1,8 +1,9 @@
 import { getRepository } from 'typeorm';
-import { City } from '../../entities/City';
+import { City } from '../entities/City';
+import { CityRequest } from '../types/RequestCity';
 
 export class CityRepository {
-  async create(payload): Promise<City | Error> {
+  async create(payload: CityRequest) {
     return getRepository(City).save(payload);
   }
 

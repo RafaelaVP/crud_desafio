@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { CitytIdNotFound } from '../errors/city/cityNotFound';
 import { ClientService } from '../services/ClientService';
 
 const clientService = new ClientService();
@@ -26,8 +27,8 @@ export class ClientController {
     try {
       const result = await clientService.findOne(request.params);
       return response.status(200).json(result);
-    } catch (err) {
-      return response.status(400).json(err);
+    } catch (error) {
+      return response.status(error).json({ description: error.description, name: error.message });
     }
   }
 

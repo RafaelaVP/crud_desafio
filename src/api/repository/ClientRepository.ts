@@ -1,6 +1,5 @@
 import { getRepository } from 'typeorm';
-
-import { Client } from '../../entities/Client';
+import { Client } from '../entities/Client';
 
 export class ClientRepository {
   async create(payload): Promise<Client | Error> {

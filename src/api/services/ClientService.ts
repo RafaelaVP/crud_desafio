@@ -1,4 +1,4 @@
-import { Client } from '../../entities/Client';
+import { Client } from '../entities/Client';
 import { ClientRepository } from '../repository/ClientRepository';
 
 const clientRepository = new ClientRepository();
