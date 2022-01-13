@@ -1,8 +1,7 @@
-import { City } from '../entities/City';
+import { City } from '../../entities/City';
 import { CitytIdNotFound } from '../errors/city/cityNotFound';
-
 import { CityRepository } from '../repository/CityRepository';
-import { CityRequest } from '../types/RequestCity';
+import { CityRequest } from '../types/city/RequestCreateCity';
 
 const cityRepository = new CityRepository();
 
@@ -12,14 +11,14 @@ export class CityService {
     return result;
   }
 
-  async findAll(payload): Promise<City[] | Error> {
+  async findAll(payload): Promise<{} | Error> {
     const cities = await cityRepository.find(payload);
     return cities;
   }
 
   async findOne(_id): Promise<City | Error> {
     const city = await cityRepository.findOne(_id);
-    if (!city) throw new CitytIdNotFound();
+    if (!city) throw new CitytIdNotFound(_id);
     return city;
   }
 

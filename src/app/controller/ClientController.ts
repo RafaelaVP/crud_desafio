@@ -1,13 +1,12 @@
 import { Request, Response } from 'express';
+import { ClientService } from '../services/ClientService';
 
-import { CityService } from '../services/CityService';
+const clientService = new ClientService();
 
-const cityService = new CityService();
-
-export class CityController {
+export class ClientController {
   async create(request: Request, response: Response) {
     try {
-      const result = await cityService.create(request.body);
+      const result = await clientService.create(request.body);
       return response.status(201).json(result);
     } catch (err) {
       return response.status(400).json(err);
@@ -16,7 +15,7 @@ export class CityController {
 
   async findAll(request: Request, response: Response) {
     try {
-      const result = await cityService.findAll(request.query);
+      const result = await clientService.findAll(request.query);
       return response.status(200).json(result);
     } catch (err) {
       return response.status(400).json(err);
@@ -25,10 +24,10 @@ export class CityController {
 
   async getById(request: Request, response: Response) {
     try {
-      const result = await cityService.findOne(request.params);
+      const result = await clientService.findOne(request.params);
       return response.status(200).json(result);
-    } catch (err) {
-      return response.status(400).json(err);
+    } catch (error) {
+      return response.status(error).json({ description: error.description, name: error.message });
     }
   }
 
@@ -36,7 +35,7 @@ export class CityController {
     try {
       const { id } = request.params;
       const payload = request.body;
-      const result = await cityService.update(id, payload);
+      const result = await clientService.update(id, payload);
       return response.status(200).json(result);
     } catch (err) {
       return response.status(400).json(err);
@@ -45,7 +44,7 @@ export class CityController {
 
   async delete(request: Request, response: Response) {
     try {
-      const result = await cityService.delete(request.params);
+      const result = await clientService.delete(request.params);
       return response.status(204).json(result);
     } catch (err) {
       return response.status(404).json(err);
