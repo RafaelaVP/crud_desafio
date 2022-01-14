@@ -1,4 +1,4 @@
-import { Client } from '../../entities/Client';
+import { Client } from '../entities/Client';
 import { ClientRepository } from '../repository/ClientRepository';
 
 const clientRepository = new ClientRepository();
@@ -8,13 +8,15 @@ export class ClientService {
     return clientRepository.create(payload);
   }
 
-  async findAll(payload): Promise<Client[] | Error> {
+  async findAll({ page = 1, limit = 100, skip, ...payload }): Promise<{} | Error> {
     const filter = {
       where: payload,
+      take: limit,
+      skip,
       relations: ['city']
     };
-    const clients = await clientRepository.find(filter);
-    return clients;
+    const [clients, count] = await clientRepository.find(filter);
+    return { clients, totalClients: count, limit, offset: page };
   }
 
   async findOne(_id): Promise<Client | Error> {
