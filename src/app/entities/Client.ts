@@ -1,10 +1,11 @@
-import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { randomUUID } from 'crypto';
 import { City } from './City';
 
 @Entity('clients')
 export class Client {
-  @PrimaryColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;
@@ -25,6 +26,7 @@ export class Client {
   @Column()
   age: number;
 
-  @CreateDateColumn()
-  created_at: Date;
+  constructor() {
+    this.id = randomUUID();
+  }
 }
