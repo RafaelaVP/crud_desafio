@@ -35,8 +35,8 @@ export class ClientController {
     try {
       const { id } = request.params;
       const payload = request.body;
-      const result = await clientService.update(id, payload);
-      return response.status(200).json(result);
+      await clientService.update(id, payload);
+      return response.status(204).end();
     } catch (err) {
       return response.status(400).json(err);
     }
@@ -44,8 +44,8 @@ export class ClientController {
 
   async delete(request: Request, response: Response) {
     try {
-      const result = await clientService.delete(request.params);
-      return response.status(204).json(result);
+      await clientService.delete(request.params);
+      return response.status(204).end();
     } catch (err) {
       return response.status(404).json(err);
     }
