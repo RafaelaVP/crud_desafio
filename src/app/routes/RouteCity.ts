@@ -7,9 +7,9 @@ import validId from '../validation/getByidValid';
 
 const cityRouter = Router();
 
-cityRouter.post('/cities', validCreate, new CityController().create);
-cityRouter.get('/cities', validGet, new CityController().findAll);
-cityRouter.get('/cities/:id', validId, new CityController().getById);
-cityRouter.put('/cities/:id', validUpdate, validId, new CityController().update);
-cityRouter.delete('/cities/:id', validId, new CityController().delete);
+cityRouter.post('/api/cities', validCreate, new CityController().create);
+cityRouter.get('/api/cities', validGet, new CityController().findAll);
+cityRouter.get('/api/cities/:id', validId, new CityController().getById);
+cityRouter.put('/api/cities/:id', validUpdate, validId, new CityController().update);
+cityRouter.delete('/api/cities/:id', validId, new CityController().delete);
 export { cityRouter };
