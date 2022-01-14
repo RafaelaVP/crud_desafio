@@ -2,15 +2,17 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateClients1641919737928 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
         name: 'clients',
         columns: [
           {
             name: 'id',
-            type: 'int',
+            type: 'uuid',
             isPrimary: true,
-            isGenerated: true
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
             name: 'name',
@@ -22,7 +24,7 @@ export class CreateClients1641919737928 implements MigrationInterface {
           },
           {
             name: 'city_home',
-            type: 'int'
+            type: 'uuid'
           },
           {
             name: 'birthdate',
@@ -31,12 +33,6 @@ export class CreateClients1641919737928 implements MigrationInterface {
           {
             name: 'age',
             type: 'numeric'
-          },
-
-          {
-            name: 'created_at',
-            type: 'timestamp',
-            default: 'now()'
           }
         ],
         foreignKeys: [
