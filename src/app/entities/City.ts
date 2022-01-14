@@ -1,9 +1,10 @@
-import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { randomUUID } from 'crypto';
 
 @Entity('cities')
 export class City {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   city: string;
@@ -11,6 +12,7 @@ export class City {
   @Column()
   state: string;
 
-  @CreateDateColumn()
-  created_at: Date;
+  constructor() {
+    this.id = randomUUID();
+  }
 }
