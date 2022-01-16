@@ -1,5 +1,5 @@
 import { City } from '../entities/City';
-import { CitytIdNotFound } from '../errors/city/cityNotFound';
+import { NotFound } from '../errors/NotFound';
 import { CityRepository } from '../repository/CityRepository';
 import { CityRequest } from '../types/city/RequestCreateCity';
 
@@ -11,11 +11,10 @@ export class CityService {
     return result;
   }
 
-  async findAll({ page = 1, limit = 100, skip, ...payload }): Promise<{} | Error> {
+  async findAll({ page = 1, limit = 100, ...payload }: CityRequest): Promise<{} | Error> {
     const filter = {
       where: payload,
-      take: limit,
-      skip
+      take: limit
     };
     const [cities, count] = await cityRepository.find(filter);
     return { cities, totalCities: count, limit, offset: page };
@@ -23,15 +22,29 @@ export class CityService {
 
   async findOne(_id): Promise<City | Error> {
     const city = await cityRepository.findOne(_id);
-    if (!city) throw new CitytIdNotFound(_id);
+    if (!city) throw new NotFound(_id);
     return city;
   }
 
   async update(_id, payload) {
-    return cityRepository.update(_id, payload);
+    const city = cityRepository.update(_id, payload);
+    if (!city) throw new NotFound(_id);
+    return city;
   }
 
   async delete(_id) {
-    return cityRepository.delete(_id);
+    const city = await cityRepository.delete(_id);
+    if (!city) throw new NotFound(_id);
+    return city;
+  }
+
+  async findByCity(nameCity): Promise<City | Error> {
+    const result = await cityRepository.findByCity(nameCity);
+    return result;
+  }
+
+  async findByState(nameState): Promise<City | Error> {
+    const result = await cityRepository.findByState(nameState);
+    return result;
   }
 }

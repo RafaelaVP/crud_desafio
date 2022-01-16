@@ -12,4 +12,6 @@ cityRouter.get('/api/cities', validGet, new CityController().findAll);
 cityRouter.get('/api/cities/:id', validId, new CityController().getById);
 cityRouter.put('/api/cities/:id', validUpdate, validId, new CityController().update);
 cityRouter.delete('/api/cities/:id', validId, new CityController().delete);
+cityRouter.get('/api/cities/name/:city', new CityController().getByCity);
+cityRouter.get('/api/cities/name/state/:state', new CityController().getByState);
 export { cityRouter };
