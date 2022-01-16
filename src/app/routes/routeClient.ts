@@ -12,4 +12,5 @@ clientRouter.get('/api/clients', validGetAll, new ClientController().findAll);
 clientRouter.get('/api/clients/:id', validGetById, new ClientController().getById);
 clientRouter.put('/api/clients/:id', new ClientController().update);
 clientRouter.delete('/api/clients/:id', new ClientController().delete);
+clientRouter.get('/api/clients/name/:name', new ClientController().getByName);
 export { clientRouter };

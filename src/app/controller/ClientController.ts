@@ -36,7 +36,7 @@ export class ClientController {
       const { id } = request.params;
       const payload = request.body;
       await clientService.update(id, payload);
-      return response.status(204).end();
+      return response.status(200).end();
     } catch (err) {
       return response.status(400).json(err);
     }
@@ -44,10 +44,19 @@ export class ClientController {
 
   async delete(request: Request, response: Response) {
     try {
-      await clientService.delete(request.params);
-      return response.status(204).end();
+      const result = await clientService.delete(request.params);
+      return response.status(204).json(result);
+    } catch (error) {
+      return response.status(404).json({ description: error.description, name: error.message });
+    }
+  }
+
+  async getByName(request: Request, response: Response) {
+    try {
+      const result = await clientService.findByNameClient(request.params);
+      return response.status(200).json(result);
     } catch (err) {
-      return response.status(404).json(err);
+      return response.status(400).json(err);
     }
   }
 }

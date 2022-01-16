@@ -25,10 +25,17 @@ export class ClientService {
   }
 
   async update(_id, payload) {
-    return clientRepository.update(_id, payload);
+    const client = await clientRepository.update(_id, payload);
+    return client;
   }
 
   async delete(_id) {
-    return clientRepository.delete(_id);
+    const result = await clientRepository.delete(_id);
+    return result;
+  }
+
+  async findByNameClient(name): Promise<Client | Error> {
+    const result = await clientRepository.findByNameClient(name);
+    return result;
   }
 }
