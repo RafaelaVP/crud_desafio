@@ -8,6 +8,8 @@ export default {
 
   testEnvironment: 'node',
 
+  setupFilesAfterEnv: ['./__tests__/jest.setup.ts'],
+
   testMatch: ['**/__tests__/**/*.test.ts?(x)'],
 
   coveragePathIgnorePatterns: ['./src/infra/migrations/*']
