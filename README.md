@@ -59,7 +59,8 @@ The api for registration!
 The following tools were used in this project:
 
 - [Node.js](https://nodejs.org/en/)
-- [MongoDb](https://docs.mongodb.com/)
+- [PostgresSql](https://www.postgresql.org/)
+- [Typeorm](https://typeorm.io/#/)
 - [Swagger](https://swagger.io/docs/)
 - [Jest](https://jestjs.io/docs/getting-started)
 - [Heroku]()
