@@ -59,4 +59,15 @@ export class ClientController {
       return response.status(400).json(err);
     }
   }
+
+  async updateName(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+      const name = request.body;
+      await clientService.update(id, name);
+      return response.status(200).end();
+    } catch (err) {
+      return response.status(400).json(err);
+    }
+  }
 }
