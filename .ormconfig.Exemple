@@ -1,0 +1,53 @@
+[
+{  
+     "name":"development", 
+     
+     "type": 
+
+    "host": "
+
+    "port": 
+
+    "username": 
+
+    "password": 
+
+    "database": 
+
+    "entities": 
+
+    "migrations": 
+
+    "synchronize": 
+    
+    "cli": 
+
+ },
+--------------------------------------------------
+Exemple_test
+   { 
+     "name": 
+
+     "type": 
+
+    "host": 
+
+    "port": 
+
+    "username": 
+
+    "password": 
+
+    "database": 
+
+    "entities": 
+
+    "dropSchema": 
+
+    "migrations": 
+
+    "synchronize": 
+    
+    "cli":
+    }
+]
