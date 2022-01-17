@@ -11,7 +11,7 @@ export class CityService {
     return result;
   }
 
-  async findAll({ page = 1, limit = 100, ...payload }: CityRequest): Promise<{} | Error> {
+  async findAll({ page = 1, limit = 100, ...payload }): Promise<{} | Error> {
     const filter = {
       where: payload,
       take: limit
