@@ -1,4 +1,5 @@
 import { Client } from '../entities/Client';
+import { ClientNotFound } from '../errors/ClientNotFound';
 import { ClientRepository } from '../repository/ClientRepository';
 
 const clientRepository = new ClientRepository();
@@ -21,6 +22,7 @@ export class ClientService {
 
   async findOne(_id): Promise<Client | Error> {
     const client = await clientRepository.findOne(_id);
+    if (!client) throw new ClientNotFound(_id);
     return client;
   }
 
@@ -31,6 +33,7 @@ export class ClientService {
 
   async delete(_id) {
     const result = await clientRepository.delete(_id);
+    if (!result) throw new ClientNotFound(_id);
     return result;
   }
 
