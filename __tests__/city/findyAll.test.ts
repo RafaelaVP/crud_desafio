@@ -1,4 +1,4 @@
-import { request } from 'supertest';
+import request from 'supertest';
 import { app } from '../../src/app';
 
 describe('listar todos os clientes', () => {
@@ -12,9 +12,9 @@ describe('listar todos os clientes', () => {
 
     const response = await request(app).get('/api/cities/');
     const { body } = response;
-    const { users } = body;
-    expect(users[0].city).toBe(cityMock.city);
-    expect(users[0].state).toBe(cityMock.state);
+    const { cities } = body;
+    expect(cities[0].city).toBe(cityMock.city);
+    expect(cities[0].state).toBe(cityMock.state);
     const { status } = response;
     expect(status).toBe(200);
   });
