@@ -64,7 +64,7 @@ The following tools were used in this project:
 - [Swagger](https://swagger.io/docs/)
 - [Jest](https://jestjs.io/docs/getting-started)
 - [Heroku]()
--[docker](https://www.docker.com/)
+- [Docker](https://www.docker.com/)
 
 ## :white_check_mark: Requirements ##
 
