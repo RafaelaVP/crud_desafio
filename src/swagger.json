@@ -1,0 +1,503 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Registration Api!",
+      "description": "This API aims to build a software for customer registration.",
+      "termsOfService": "http://localhost:3000/terms",
+      "contact": {
+        "email": "rafavalpint@gmail.com"
+      },
+      "version": "0.0.1"
+    },
+    "externalDocs": {
+      "description": "Github repository",
+      "url": "https://github.com/RafaelaVP/crud_desafio.git"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/api/",
+        "description": "API"
+      }
+    ],
+    "paths": {
+      "/cities": {
+        "get": {
+          "summary": "Search all cities!",
+          "responses": {
+            "200": {
+              "description": "success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Cities"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new city",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cityCreate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "ok",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/cityCreate"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/cities/{id}": {
+        "get": {
+          "summary": "Search by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Found city!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Cities"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found city",
+              "content": {
+                "application/json": {
+                  "example": "Not found"
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update city data!",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cityCreate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "ok",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Cities"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found city.",
+              "content": {
+                "application/json": {
+                  "example": "Not found"
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "delete a city!",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "ok",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Cities"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found city.",
+              "content": {
+                "application/json": {
+                  "example": "Not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/cities/name/{city}": {
+        "get": {
+          "summary": "Search city by name",
+          "parameters": [
+            {
+              "name": "city",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Found city!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Cities"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request!",
+              "content": {
+                "application/json": {
+                  "example": "Bad request!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/cities/name/state/{state}": {
+        "get": {
+          "summary": "Search city by name",
+          "parameters": [
+            {
+              "name": "state",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Found city!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Cities"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request!",
+              "content": {
+                "application/json": {
+                  "example": "Bad request!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/clients/": {
+        "get": {
+          "summary": "Search all customers!",
+          "responses": {
+            "200": {
+              "description": "Sucess",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Clients"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new client!",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clientCreate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "ok",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/clientCreate"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/clients/{id}": {
+        "get": {
+          "summary": "Search by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "found city",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Clients"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "not found client",
+              "content": {
+                "application/json": {
+                  "example": "Not found"
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update customer data",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clientCreate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "ok",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Clients"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Não encontrado cliente.",
+              "content": {
+                "application/json": {
+                  "example": "Not found"
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "delete a customer",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "ok",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Clients"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found.",
+              "content": {
+                "application/json": {
+                  "example": "Not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/clients/name/{name}": {
+        "get": {
+          "summary": "Search city by name",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Found city!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Cities"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request!",
+              "content": {
+                "application/json": {
+                  "example": "Bad request!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Cities": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            }
+          }
+        },
+        "cityCreate": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            }
+          }
+        },
+        "Clients": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "gender": {
+              "type": "string"
+            },
+            "city_home": {
+              "type": "string"
+            },
+            "age": {
+              "type": "number"
+            }
+          }
+        },
+        "clientCreate": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "gender": {
+              "type": "string"
+            },
+            "city_home": {
+              "type": "string"
+            },
+            "age": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  }
