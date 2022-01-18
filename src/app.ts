@@ -2,12 +2,8 @@ import 'reflect-metadata';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocs from './swagger.json';
-import { connection } from './infra/database/index';
+import './infra/database';
 import { routes } from './app/routes';
-
-if (process.env.NODE_ENV !== 'test') {
-  connection();
-}
 
 const app = express();
 
