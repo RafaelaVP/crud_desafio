@@ -37,14 +37,4 @@ export class CityService {
     if (!city) throw new CityNotFound(_id);
     return city;
   }
-
-  async findByCity(nameCity): Promise<City | Error> {
-    const result = await cityRepository.findByCity(nameCity);
-    return result;
-  }
-
-  async findByState(nameState): Promise<City | Error> {
-    const result = await cityRepository.findByState(nameState);
-    return result;
-  }
 }

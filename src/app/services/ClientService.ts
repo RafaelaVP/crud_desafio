@@ -39,18 +39,4 @@ export class ClientService {
     if (!result) throw new ClientNotFound(_id);
     return result;
   }
-
-  async findByNameClient(name): Promise<Client | Error> {
-    const result = await clientRepository.findByNameClient(name);
-    Object.assign(result, {
-      birthdate: formatDate.formatDateToRequest(result.birthdate)
-    });
-    return result;
-  }
-
-  async updateName(_id, payload) {
-    const city = clientRepository.updateName(_id, payload);
-    if (!city) throw new ClientNotFound(_id);
-    return city;
-  }
 }
