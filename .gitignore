@@ -4,3 +4,4 @@ package-lock.json
 ormconfig.json
 /coverage
 /.vscode
+yarn.lock
