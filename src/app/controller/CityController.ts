@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { paginatedSerialize } from '../serialize/citySerialize';
 
 import { CityService } from '../services/CityService';
 
@@ -17,7 +18,7 @@ export class CityController {
   async findAll(request: Request, response: Response) {
     try {
       const result = await cityService.findAll(request.query);
-      return response.status(200).json(result);
+      return response.status(200).json(paginatedSerialize(result));
     } catch (err) {
       return response.status(400).json(err.message);
     }

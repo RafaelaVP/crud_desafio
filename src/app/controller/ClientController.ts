@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { paginatedSerialize, serialize } from '../serialize/clientSerialize';
 import { ClientService } from '../services/ClientService';
 
 const clientService = new ClientService();
@@ -16,7 +17,7 @@ export class ClientController {
   async findAll(request: Request, response: Response) {
     try {
       const result = await clientService.findAll(request.query);
-      return response.status(200).json(result);
+      return response.status(200).json(paginatedSerialize(result));
     } catch (err) {
       return response.status(400).json(err);
     }
