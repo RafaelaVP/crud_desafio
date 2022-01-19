@@ -50,24 +50,4 @@ export class ClientController {
       return response.status(404).json({ description: error.description, name: error.message });
     }
   }
-
-  async getByName(request: Request, response: Response) {
-    try {
-      const result = await clientService.findByNameClient(request.params);
-      return response.status(200).json(result);
-    } catch (err) {
-      return response.status(400).json(err);
-    }
-  }
-
-  async updateName(request: Request, response: Response) {
-    try {
-      const { id } = request.params;
-      const name = request.body;
-      await clientService.update(id, name);
-      return response.status(200).end();
-    } catch (err) {
-      return response.status(400).json(err);
-    }
-  }
 }

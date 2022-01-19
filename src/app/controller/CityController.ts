@@ -51,22 +51,4 @@ export class CityController {
       return response.status(404).json(err);
     }
   }
-
-  async getByCity(request: Request, response: Response) {
-    try {
-      const result = await cityService.findByCity(request.params);
-      return response.status(200).json(result);
-    } catch (err) {
-      return response.status(400).json(err);
-    }
-  }
-
-  async getByState(request: Request, response: Response) {
-    try {
-      const result = await cityService.findByState(request.params);
-      return response.status(200).json(result);
-    } catch (err) {
-      return response.status(400).json(err);
-    }
-  }
 }
