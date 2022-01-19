@@ -28,23 +28,4 @@ export class BaseRepository {
   async delete(_id: string) {
     return getConnection(process.env.NODE_ENV).getRepository(this.entity).delete(_id);
   }
-
-  async findByCity(city: string): Promise<any | Error> {
-    const result = await getConnection(process.env.NODE_ENV).getRepository(this.entity).findOne(city);
-    return result;
-  }
-
-  async findByState(state: string): Promise<any | Error> {
-    const result = await getConnection(process.env.NODE_ENV).getRepository(this.entity).findOne(state);
-    return result;
-  }
-
-  async findByNameClient(name: string): Promise<any | Error> {
-    const result = await getConnection(process.env.NODE_ENV).getRepository(this.entity).findOne(name);
-    return result;
-  }
-
-  async updateName(_id: string, name: string) {
-    return getConnection(process.env.NODE_ENV).getRepository(this.entity).update(_id, name);
-  }
 }
