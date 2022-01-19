@@ -20,7 +20,8 @@ export class CreateClients1641919737928 implements MigrationInterface {
           },
           {
             name: 'gender',
-            type: 'varchar'
+            type: 'varchar',
+            enum: ['MASCULINO', 'FEMININO', 'OUTRO']
           },
           {
             name: 'city_home',
@@ -29,10 +30,6 @@ export class CreateClients1641919737928 implements MigrationInterface {
           {
             name: 'birthdate',
             type: 'date'
-          },
-          {
-            name: 'age',
-            type: 'numeric'
           }
         ],
         foreignKeys: [

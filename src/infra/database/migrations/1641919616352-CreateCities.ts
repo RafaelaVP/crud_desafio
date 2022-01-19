@@ -20,7 +20,36 @@ export class CreateCities1641919616352 implements MigrationInterface {
           },
           {
             name: 'state',
-            type: 'varchar'
+            type: 'varchar',
+            enum: [
+              'AC',
+              'AL',
+              'AP',
+              'AM',
+              'BA',
+              'CE',
+              'DF',
+              'ES',
+              'GO',
+              'MA',
+              'MT',
+              'MS',
+              'MG',
+              'PA',
+              'PB',
+              'PR',
+              'PE',
+              'PI',
+              'RJ',
+              'RN',
+              'RS',
+              'RO',
+              'RR',
+              'SC',
+              'SP',
+              'SE',
+              'TO'
+            ]
           }
         ]
       })
