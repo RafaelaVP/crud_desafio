@@ -11,7 +11,7 @@ export class BaseRepository {
     return getConnection(process.env.NODE_ENV).getRepository(this.entity).save(payload);
   }
 
-  async find(payload): Promise<any | Error> {
+  async find(payload): Promise<any> {
     const result = await getConnection(process.env.NODE_ENV).getRepository(this.entity).findAndCount(payload);
     return result;
   }
