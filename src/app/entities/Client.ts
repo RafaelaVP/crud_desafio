@@ -23,9 +23,6 @@ export class Client {
   @Column()
   birthdate: Date;
 
-  @Column()
-  age: number;
-
   constructor() {
     this.id = randomUUID();
   }
