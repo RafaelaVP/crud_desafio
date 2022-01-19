@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
+    "@joi/date": "^2.1.0",
     "express": "^4.17.2",
     "joi": "^17.5.0",
     "moment": "^2.29.1",
