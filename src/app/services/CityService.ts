@@ -1,23 +1,23 @@
 import { City } from '../entities/City';
 import { CityNotFound } from '../errors/CityNotFound';
 import { CityRepository } from '../repository/CityRepository';
-import { CityRequest } from '../types/city/RequestCreateCity';
+import { Icities } from '../interfaces/InterfaceCity';
 
 const cityRepository = new CityRepository();
 
 export class CityService {
-  async create(payload: CityRequest): Promise<City | Error> {
+  async create(payload): Promise<City | Error> {
     const result = await cityRepository.create(payload);
     return result;
   }
 
-  async findAll({ page = 1, limit = 100, ...payload }): Promise<{} | Error> {
+  async findAll({ page = 1, limit = 100, ...payload }): Promise<Icities> {
     const filter = {
       where: payload,
       take: limit
     };
-    const [cities, count] = await cityRepository.find(filter);
-    return { cities, totalCities: count, limit, offset: page };
+    const [docs, count] = await cityRepository.find(filter);
+    return { docs, total: count, limit, offset: page };
   }
 
   async findOne(_id): Promise<City | Error> {
