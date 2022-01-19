@@ -6,7 +6,6 @@ export = async (req, res, next) => {
       city: Joi.string().min(2).max(30),
       state: Joi.string()
         .trim()
-        .required()
         .valid(
           'AC',
           'AL',

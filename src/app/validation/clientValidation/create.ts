@@ -1,4 +1,7 @@
 import Joi from 'joi';
+import Extension from '@joi/date';
+
+const JoiDate = Joi.extend(Extension);
 
 export = async (req, res, next) => {
   try {
@@ -6,7 +9,7 @@ export = async (req, res, next) => {
       name: Joi.string().min(2).max(30).required(),
       gender: Joi.string().trim().required().valid('FEMININO', 'MASCULINO', 'OUTRO'),
       city_home: Joi.string(),
-      birthdate: Joi.date(),
+      birthdate: JoiDate.date().format('DD/MM/YYYY').required(),
       age: Joi.number()
     });
 
