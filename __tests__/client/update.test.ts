@@ -31,4 +31,33 @@ describe('update client', () => {
     const response = await request(app).put(`/api/clients/${create.body.id}`).send(clientUPMock);
     expect(response.statusCode).toEqual(200);
   });
+  it('returns status 400 bad request', async () => {
+    const cityMock = {
+      city: 'Porto Alegre',
+      state: 'RS'
+    };
+    const resCity = await request(app).post('/api/cities/').send(cityMock);
+
+    const clientMock = {
+      name: 'Rafaela',
+      gender: 'FEMININO',
+      city_home: `${resCity.body.id}`,
+      birthdate: '11/10/1995',
+      
+    };
+    const create = await request(app).post('/api/clients/').send(clientMock);
+    const res = await request(app).get(`/api/clients/${create.body.id}`);
+    expect(res.body).toHaveProperty('id');
+    
+    const clientUPMock = {
+        name: 'Rafael',
+        gender: 55,
+        city_home: `${resCity.body.id}`,
+        
+        
+      };
+    
+    const response = await request(app).put(`/api/clients/${create.body.id}`).send(clientUPMock);
+    expect(response.statusCode).toEqual(400);
+  });
 });

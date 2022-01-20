@@ -20,4 +20,24 @@ describe('update client', () => {
     const response = await request(app).put(`/api/cities/${create.body.id}`).send(cityUpMock);
     expect(response.statusCode).toEqual(200);
   });
+  
+  it('returns status 400 bad request', async () => {
+    const cityMock = {
+      city: 'Porto Alegre',
+      state: 'RS'
+    };
+    const create = await request(app).post('/api/cities/').send(cityMock);
+    
+     const res = await request(app).get(`/api/cities/${create.body.id}`);
+    expect(res.body).toHaveProperty('id');
+    
+    const cityUpMock = {
+        city: 'Pelotas',
+        state: 898
+      };
+    
+    const response = await request(app).put(`/api/cities/${create.body.id}`).send(cityUpMock);
+    expect(response.statusCode).toEqual(400);
+  });
+
 });
