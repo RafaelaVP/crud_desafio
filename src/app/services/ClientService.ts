@@ -1,8 +1,8 @@
 import moment from 'moment';
 import { Client } from '../entities/Client';
-import { ClientNotFound } from '../errors/ClientNotFound';
 import { ClientRepository } from '../repository/ClientRepository';
 import { Iclients } from '../interfaces/InterfaceClient';
+import { NotFound } from '../errors/NotFound';
 
 const clientRepository = new ClientRepository();
 
@@ -24,18 +24,21 @@ export class ClientService {
 
   async findOne(_id) {
     const client = await clientRepository.findOne(_id);
-    if (!client) throw new ClientNotFound(_id);
+    if (!client) throw new NotFound(_id);
     return client;
   }
 
   async update(_id, payload) {
-    const client = await clientRepository.update(_id, payload);
-    return client;
+    const findClient = await this.findOne(_id);
+    if (!findClient) throw new NotFound(_id);
+    return clientRepository.update( _id , payload);
+    
   }
 
   async delete(_id) {
-    const result = await clientRepository.delete(_id);
-    if (!result) throw new ClientNotFound(_id);
-    return result;
+    const findClient = await this.findOne(_id);
+    if (!findClient) throw new NotFound(_id);
+    return clientRepository.delete(_id);
+    
   }
 }

@@ -1,7 +1,7 @@
 import { City } from '../entities/City';
-import { CityNotFound } from '../errors/CityNotFound';
 import { CityRepository } from '../repository/CityRepository';
 import { Icities } from '../interfaces/InterfaceCity';
+import { NotFound } from '../errors/NotFound';
 
 const cityRepository = new CityRepository();
 
@@ -22,19 +22,20 @@ export class CityService {
 
   async findOne(_id): Promise<City | Error> {
     const city = await cityRepository.findOne(_id);
-    if (!city) throw new CityNotFound(_id);
+    if (!city) throw new NotFound(_id);
     return city;
   }
 
   async update(_id, payload) {
-    const city = cityRepository.update(_id, payload);
-    if (!city) throw new CityNotFound(_id);
-    return city;
+    const findCity = await this.findOne(_id);
+      if (!findCity) throw new NotFound(_id);
+    return cityRepository.update(_id, payload);
   }
 
   async delete(_id) {
-    const city = await cityRepository.delete(_id);
-    if (!city) throw new CityNotFound(_id);
-    return city;
+      const findCity = await this.findOne(_id);
+      if (!findCity) throw new NotFound(_id);
+      return cityRepository.delete(_id);
+      
   }
 }
