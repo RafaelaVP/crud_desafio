@@ -10,8 +10,8 @@ export class CityController {
     try {
       const result = await cityService.create(request.body);
       return response.status(201).json(result);
-    } catch (err) {
-      return response.status(400).json(err);
+    } catch (error) {
+      return response.status(400).json({ error });
     }
   }
 
@@ -28,8 +28,8 @@ export class CityController {
     try {
       const result = await cityService.findOne(request.params);
       return response.status(200).json(result);
-    } catch (err) {
-      return response.status(400).json(err);
+    } catch (error) {
+      return response.status(400).json(error);
     }
   }
 
@@ -48,8 +48,8 @@ export class CityController {
     try {
       const result = await cityService.delete(request.params);
       return response.status(204).json(result);
-    } catch (err) {
-      return response.status(404).json(err);
+    } catch (error) {
+      return response.status(error.statusCode).json({ description: error.description, name: error.message });
     }
   }
 }

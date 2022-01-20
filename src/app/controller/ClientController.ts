@@ -28,7 +28,7 @@ export class ClientController {
       const result = await clientService.findOne(request.params);
       return response.status(200).json(result);
     } catch (error) {
-      return response.status(error).json({ description: error.description, name: error.message });
+      return response.status(400).json(error);
     }
   }
 
@@ -48,7 +48,7 @@ export class ClientController {
       const result = await clientService.delete(request.params);
       return response.status(204).json(result);
     } catch (error) {
-      return response.status(404).json({ description: error.description, name: error.message });
+      return response.status(404).json(error);
     }
   }
 }
