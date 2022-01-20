@@ -1,5 +1,5 @@
-const serialize = ({ _id, city, state }) => ({
-  _id,
+const serialize = ({ id, city, state }) => ({
+  id,
   city,
   state
 });
