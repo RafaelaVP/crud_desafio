@@ -13,11 +13,10 @@ describe('create client', () => {
     expect(response.body).toHaveProperty('id');
   });
   it('returns bad request ', async () => {
-    const cityMock = {
-      city: 'Pelotas',
-      state: 'Rk'
-    };
-    const res = await request(app).post('/api/cities/').send(cityMock);
+    const cityMock = {};
+    
+    const res = await request(app).post('/api/cities/').send();
+    
     expect(res.statusCode).toEqual(400);
   });
 });

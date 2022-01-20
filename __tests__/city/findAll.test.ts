@@ -1,8 +1,8 @@
 import request from 'supertest';
 import { app } from '../../src/app';
 
-describe('listar todos os clientes', () => {
-  it('retornar status 200', async () => {
+describe('Search all cities return status 200', () => {
+  it('return status 200 ', async () => {
     const cityMock = {
       city: 'Pelotas',
       state: 'RS'

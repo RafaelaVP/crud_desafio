@@ -1,8 +1,8 @@
 import request from 'supertest';
 import { app } from '../../src/app';
 
-describe('create client', () => {
-  it('returns status 201', async () => {
+describe('Search all cities ', () => {
+  it('return status 200', async () => {
     const cityMock = {
       city: 'Porto Alegre',
       state: 'RS'
@@ -11,10 +11,9 @@ describe('create client', () => {
 
     const clientMock = {
       name: 'Rafaela',
-      gender: 'Feminino',
+      gender: 'FEMININO',
       city_home: `${resCity.body.id}`,
-      birthdate: '1995-11-10T02:00:00.000Z',
-      age: 27
+      birthdate: '11/10/1995',
     };
     await request(app).post('/api/clients/').send(clientMock);
     const response = await request(app).get('/api/clients/');
@@ -24,7 +23,7 @@ describe('create client', () => {
     expect(clients[0].gender).toBe(clientMock.gender);
     expect(clients[0].city_home).toBe(clientMock.city_home);
     expect(clients[0].birthdate).toBe(clientMock.birthdate);
-    expect(clients[0].age).toBe(clientMock.age);
+  
 
     const { status } = response;
     expect(status).toBe(200);

@@ -1,8 +1,8 @@
 import request from 'supertest';
 import { app } from '../../src/app';
 
-describe('listar client pelo id', () => {
-  it('retornar status', async () => {
+describe('delete city by id', () => {
+  it('return status 204  ', async () => {
     const clientMock = {
       city: 'Pelotas',
       state: 'RS'
@@ -14,4 +14,21 @@ describe('listar client pelo id', () => {
     const { status } = res;
     expect(status).toBe(204);
   });
+  it('returns not found', async () => {
+    const idError = '4a271b3e-2c2e-477f-ab58-4a5ebc35dec1'
+    const clientMock = {
+      city: 'Pelotas',
+      state: 'RS'
+    };
+
+    const response = await request(app).post('/api/cities/').send(clientMock);
+
+    const res = await request(app).delete(`/api/cities/${idError}`);
+    const { status } = res;
+    expect(status).toBe(404);
+
+  });
+
 });
+
+

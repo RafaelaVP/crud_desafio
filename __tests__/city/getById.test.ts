@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../../src/app';
 
-describe('listar client pelo id', () => {
+describe('Search customer by id', () => {
   it('retornar status 200', async () => {
     const Mockcity = {
       city: 'Pelotas',
