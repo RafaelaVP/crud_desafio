@@ -10,7 +10,7 @@ export class ClientController {
       const result = await clientService.create(request.body);
       return response.status(201).json(result);
     } catch (err) {
-      return response.status(400).json(err);
+      return response.status(400).json({message:'error id city of table city does not exist'});
     }
   }
 
@@ -39,7 +39,7 @@ export class ClientController {
       await clientService.update(id, payload);
       return response.status(200).end();
     } catch (err) {
-      return response.status(400).json(err);
+      return response.status(400).json({message:'error trying to update with city id.'});
     }
   }
 
@@ -48,7 +48,7 @@ export class ClientController {
       const result = await clientService.delete(request.params);
       return response.status(204).json(result);
     } catch (error) {
-      return response.status(404).json(error);
+      return response.status(400).json(error);
     }
   }
 }

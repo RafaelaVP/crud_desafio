@@ -10,8 +10,10 @@ export class CityController {
     try {
       const result = await cityService.create(request.body);
       return response.status(201).json(result);
+    
     } catch (error) {
-      return response.status(400).json({ error });
+      
+      return response.status(400).json(error);
     }
   }
 
