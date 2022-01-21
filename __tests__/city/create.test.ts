@@ -19,4 +19,17 @@ describe('create client', () => {
     
     expect(res.statusCode).toEqual(400);
   });
+  it('returns bad request ', async () => {
+    const cityMock = {
+      city: '',
+      state:'RS'
+    };
+    
+    const response = await request(app).post('/api/cities/').send(cityMock);
+    
+    expect(response.body).toEqual([{
+      "description": "\"city\" is not allowed to be empty",
+      "name": "city"
+  }])
+  });
 });

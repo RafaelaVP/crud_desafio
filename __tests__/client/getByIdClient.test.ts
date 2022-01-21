@@ -1,5 +1,6 @@
 import request from 'supertest';
 import { app } from '../../src/app';
+import { NotFound } from '../../src/app/errors/NotFound';
 
 describe('Search customer by id', () => {
   it('returns status 200', async () => {
@@ -22,13 +23,12 @@ describe('Search customer by id', () => {
     expect(body.id).toBe(response.body.id);
     expect(status).toBe(200);
   });
-  it('returns bad request ', async () => {
+  it('returns not found 404 ', async () => {
     const cityMock = {
       city: 'Pelotas',
       state: 'RS'
     };
     const resC = await request(app).post('/api/cities/').send(cityMock);
-    const idName = 798;
     const clientMock = {
       name: 'Rafaela',
       gender: 'FEMININO',
@@ -36,8 +36,33 @@ describe('Search customer by id', () => {
       birthdate: '11/10/1995',
     };
     await request(app).post('/api/cities/').send(clientMock);
-    const res = await request(app).get(`/api/cities/${idName}`);
-    const { status } = res;
+    const response = await request(app).get(`/api/cities/${'4a271b3e-2c2e-477f-ab58-4a5ebc35dec1'}`);
+    expect(response.body).toEqual({
+      "description": "Not found",
+      "message": "The ID: [object Object] was not found",
+       "statusCode": 404,
+    })
+  });
+  it('returns not found 404 ', async () => {
+    const cityMock = {
+      city: 'Pelotas',
+      state: 'RS'
+    };
+    const resC = await request(app).post('/api/cities/').send(cityMock);
+    const clientMock = {
+      name: 'Rafaela',
+      gender: 'FEMININO',
+      city_home: `${resC.body.id}`,
+      birthdate: '11/10/1995',
+    };
+    await request(app).post('/api/cities/').send(clientMock);
+    
+    const response = await request(app).get(`/api/cities/${12}`);
+    const { status } = response;
     expect(status).toBe(400);
   });
+  
+
 });
+
+

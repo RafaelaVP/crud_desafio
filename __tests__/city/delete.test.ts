@@ -14,7 +14,7 @@ describe('delete city by id', () => {
     const { status } = res;
     expect(status).toBe(204);
   });
-  it('returns not found', async () => {
+  it('returns bad', async () => {
     const idError = '4a271b3e-2c2e-477f-ab58-4a5ebc35dec1'
     const clientMock = {
       city: 'Pelotas',
