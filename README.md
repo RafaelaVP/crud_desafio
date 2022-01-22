@@ -63,7 +63,6 @@ The following tools were used in this project:
 - [Typeorm](https://typeorm.io/#/)
 - [Swagger](https://swagger.io/docs/)
 - [Jest](https://jestjs.io/docs/getting-started)
-- [Heroku]()
 - [Docker](https://www.docker.com/)
 
 ## :white_check_mark: Requirements ##
@@ -80,7 +79,7 @@ $ git clone https://github.com/RafaelaVP/crud_desafio.git
 $ cd crud_desafio
 
 # Install dependencies
-$ yarn add install
+$ yarn add 
 
 # Run the project
 $  yarn run start
@@ -92,14 +91,13 @@ $Connection Database connection was made with docker and ormconfig.
 ```
 Improvements
 <br>
-Necessary to adjust the class of errors, adjust the pagination creation of the serializer, it remains to do the tests.
+Finished api!
 
 <br>
 Acess
 <br>
 Swagger: http://localhost:3000/api-docs/
 <br>
-Heroku: 
 
 
 Made with :heart: by <a href="https://github.com/RafaelaVP" target="_blank">{{Rafaela Valerio}}</a>
