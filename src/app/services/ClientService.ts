@@ -3,11 +3,21 @@ import { Client } from '../entities/Client';
 import { ClientRepository } from '../repository/ClientRepository';
 import { Iclients } from '../interfaces/InterfaceClient';
 import { NotFound } from '../errors/NotFound';
+import { AlreadyExists } from '../errors/AlreadyExistes';
+
 
 const clientRepository = new ClientRepository();
-
+const clientRepo = new ClientRepository();
 export class ClientService {
   async create(payload): Promise<Client | Error> {
+    const {name} = payload
+     const clients = await clientRepo.findspecial ({
+       where: {
+         name,
+       }
+     })
+     if (clients) throw new AlreadyExists(payload);
+
     payload.birthdate = new Date(moment(payload.birthdate, 'DD/MM/YYYY').format('YYYY-MM-DD'));
     return clientRepository.create(payload);
   }
@@ -29,15 +39,13 @@ export class ClientService {
   }
 
   async update(_id, payload) {
-    const findClient = await this.findOne(_id);
-    if (!findClient) throw new NotFound(_id);
+    await this.findOne(_id);
     return clientRepository.update( _id , payload);
     
   }
 
   async delete(_id) {
-    const findClient = await this.findOne(_id);
-    if (!findClient) throw new NotFound(_id);
+    await this.findOne(_id);
     return clientRepository.delete(_id);
     
   }
