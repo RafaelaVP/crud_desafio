@@ -18,7 +18,7 @@ describe('Search all cities return status 200', () => {
     const { status } = response;
     expect(status).toBe(200);
   });
-  it('return bad request ', async () => {
+  it('return bad request 400 ', async () => {
     const cityMock = {
       city: 'Pelotas',
       state: 'RS'

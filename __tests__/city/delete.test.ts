@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../src/app';
 
 describe('delete city by id', () => {
-  it('return status 200  ', async () => {
+  it('return status 204  ', async () => {
     const cityMock = {
       city: 'Pelotas',
       state: 'RS'
@@ -12,7 +12,7 @@ describe('delete city by id', () => {
 
     const res = await request(app).delete(`/api/cities/${response.body.id}`);
     const { status } = res;
-    expect(status).toBe(204);
+    expect(status).toBe(200);
   });
   it('returns not found', async () => {
 

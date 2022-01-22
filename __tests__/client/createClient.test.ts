@@ -19,14 +19,14 @@ describe('create client', () => {
     const response = await request(app).post('/api/clients/').send(clientMock);
     expect(response.statusCode).toEqual(201);
   });
-  it('returns bad request status ', async () => {
+  it('returns bad request status 400 ', async () => {
     const errorMock = {};
     
     const res = await request(app).post('/api/clients/').send(errorMock);
     
     expect(res.statusCode).toEqual(400);
   });
-  it('returns status 201', async () => {
+  it('returns bad request', async () => {
     const cityMock = {
       city: 'Porto Alegre',
       state: 'RS'

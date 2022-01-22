@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../src/app';
 
 describe('delete city by id', () => {
-  it('returns status 201', async () => {
+  it('returns status 200', async () => {
     const cityMock = {
       city: 'Porto Alegre',
       state: 'RS'

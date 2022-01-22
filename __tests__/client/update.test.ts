@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../src/app';
 
 describe('update client', () => {
-  it('returns status 200', async () => {
+  it('returns status 204', async () => {
     const cityMock = {
       city: 'Porto Alegre',
       state: 'RS'
