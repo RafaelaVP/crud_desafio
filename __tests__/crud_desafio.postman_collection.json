@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "006c7cd5-03df-4ba8-8216-7d95926ce4ad",
+		"name": "crud_desafio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cities",
+			"item": [
+				{
+					"name": "cityCreate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "city",
+								"value": "Porto Alegre",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\":\"Santa Catarina\",\r\n    \"state\":\"SC\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/cities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cityGetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cities/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "12",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cityGetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cities/91488ce0-1e42-46fd-9392-02703561794a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities",
+								"91488ce0-1e42-46fd-9392-02703561794a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cityUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\":\"Porto Alegre\",\r\n    \"state\":\"RS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/cities/63774059-8b7c-4b1e-9699-d14d111c0c26",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities",
+								"63774059-8b7c-4b1e-9699-d14d111c0c26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cityDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cities/bd766784-ab67-4f00-9610-92d9b2b441af",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities",
+								"bd766784-ab67-4f00-9610-92d9b2b441af"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "clients",
+			"item": [
+				{
+					"name": "clientUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rafala Valerio\",\r\n    \"gender\":\"FEMININO\",\r\n    \"city_home\": \"186aff9a-07dc-4d90-9522-857ce8456683\",\r\n    \"birthdate\": \"11/10/1995\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/clients/8bf1cc32-f3e0-4f90-a1c1-470c48307647",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clients",
+								"8bf1cc32-f3e0-4f90-a1c1-470c48307647"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clientCreate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rafaela\",\r\n    \"gender\":\"FEMININO\",\r\n    \"city_home\": \"186aff9a-07dc-4d90-9522-857ce8456683\",\r\n    \"birthdate\": \"15/12/1990\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/clients/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clientDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/clients/403fb33a-f788-4973-937b-1f0a04378d9f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clients",
+								"403fb33a-f788-4973-937b-1f0a04378d9f"
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": "masculino",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clientGetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clients"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "0c15d530-6c0d-4d6c-9e5b-79a5c7c49e2d",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clientGetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/clients/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clients",
+								"40"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
