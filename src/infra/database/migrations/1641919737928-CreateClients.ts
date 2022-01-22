@@ -1,4 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import { enumClient } from '../../../app/utils/enumClient';
+
 
 export class CreateClients1641919737928 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -21,7 +23,7 @@ export class CreateClients1641919737928 implements MigrationInterface {
           {
             name: 'gender',
             type: 'varchar',
-            enum: ['MASCULINO', 'FEMININO', 'OUTRO']
+            enum: Object.keys(enumClient)
           },
           {
             name: 'city_home',
