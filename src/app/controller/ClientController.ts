@@ -10,7 +10,7 @@ export class ClientController {
       const result = await clientService.create(request.body);
       return response.status(201).json(result);
     } catch (err) {
-      return response.status(400).json({message:'error id city of table city does not exist'});
+      return response.status(400).json(err);
     }
   }
 
@@ -25,19 +25,19 @@ export class ClientController {
 
   async getById(request: Request, response: Response) {
     try {
-      const result = await clientService.findOne(request.params);
+      const result = await clientService.findOne(request.params.id);
       return response.status(200).json(result);
     } catch (error) {
-      return response.status(400).json(error);
-    }
-  }
+       return response.status(400).json(error);
+     }
+   }
 
   async update(request: Request, response: Response) {
     try {
       const { id } = request.params;
       const payload = request.body;
       await clientService.update(id, payload);
-      return response.status(200).end();
+      return response.status(204).end();
     } catch (err) {
       return response.status(400).json({message:'error trying to update with city id.'});
     }
@@ -46,9 +46,9 @@ export class ClientController {
   async delete(request: Request, response: Response) {
     try {
       const result = await clientService.delete(request.params);
-      return response.status(204).json(result);
+      return response.status(200).json(result);
     } catch (error) {
-      return response.status(400).json(error);
+      return response.status(400).json(error)
     }
   }
 }
