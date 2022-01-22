@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../src/app';
 
 describe('update client', () => {
-  it('returns status 201', async () => {
+  it('returns status 200', async () => {
     const cityMock = {
       city: 'Porto Alegre',
       state: 'RS'
@@ -29,7 +29,7 @@ describe('update client', () => {
       };
     
     const response = await request(app).put(`/api/clients/${create.body.id}`).send(clientUPMock);
-    expect(response.statusCode).toEqual(200);
+    expect(response.statusCode).toEqual(204);
   });
   it('returns status 400 bad request', async () => {
     const cityMock = {
@@ -104,6 +104,7 @@ describe('update client', () => {
     };
     await request(app).post('/api/cities/').send(clientMock);
     const response = await request(app).get(`/api/cities/${'4a271b3e-2c2e-477f-ab58-4a5ebc35dec1'}`);
+    const resp = await request(app).put(`/api/cities/${'4a271b3e-2c2e-477f-ab58-4a5ebc35dec1'}`);
     expect(response.body).toEqual({
       "description": "Not found",
       "message": "The ID: [object Object] was not found",

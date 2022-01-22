@@ -19,7 +19,7 @@ describe('delete city by id', () => {
     const response = await request(app).post('/api/clients/').send(clientMock);
     const res = await request(app).delete(`/api/clients/${response.body.id}`);
     const { status } = res;
-    expect(status).toBe(204);
+    expect(status).toBe(200);
   });
   it('returns bad request', async () => {
     const idError = '4a271b3e-2c2e-477f-ab58-4a5ebc35dec1'

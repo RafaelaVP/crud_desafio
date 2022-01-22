@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { app } from '../../src/app';
-import { NotFound } from '../../src/app/errors/NotFound';
+
 
 describe('Search customer by id', () => {
   it('returns status 200', async () => {
@@ -43,26 +43,14 @@ describe('Search customer by id', () => {
        "statusCode": 404,
     })
   });
-  it('returns not found 404 ', async () => {
-    const cityMock = {
-      city: 'Pelotas',
-      state: 'RS'
-    };
-    const resC = await request(app).post('/api/cities/').send(cityMock);
-    const clientMock = {
-      name: 'Rafaela',
-      gender: 'FEMININO',
-      city_home: `${resC.body.id}`,
-      birthdate: '11/10/1995',
-    };
-    await request(app).post('/api/cities/').send(clientMock);
+  it('returns bad request 400 ', async () => {
     
-    const response = await request(app).get(`/api/cities/${12}`);
-    const { status } = response;
+    const res = await request(app).get('/api/clients/0');
+    const { status } = res;
     expect(status).toBe(400);
-  });
-  
 
+ });
 });
+  
 
 

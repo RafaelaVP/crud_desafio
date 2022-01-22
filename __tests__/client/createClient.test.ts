@@ -26,7 +26,7 @@ describe('create client', () => {
     
     expect(res.statusCode).toEqual(400);
   });
-  it('returns bad request message error', async () => {
+  it('returns status 201', async () => {
     const cityMock = {
       city: 'Porto Alegre',
       state: 'RS'
@@ -36,12 +36,17 @@ describe('create client', () => {
     const clientMock = {
       name: 'Rafaela',
       gender: 'FEMININO',
-      city_home: '4a271b3e-2c2e-477f-ab58-4a5ebc35dec1',
+      city_home: `${resCity.body.id}`,
       birthdate: '11/10/1995',
       
     };
     const response = await request(app).post('/api/clients/').send(clientMock);
-    expect(response.body).toEqual({message:'error id city of table city does not exist'})
+    const resp = await request(app).post('/api/clients/').send(clientMock);
+    expect(resp.body).toEqual({
+      "description": "Bad request",
+      "message": " Already Exists"
+  })
+    
   });
   
 });

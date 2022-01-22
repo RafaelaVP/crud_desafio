@@ -2,32 +2,29 @@ import request from 'supertest';
 import { app } from '../../src/app';
 
 describe('delete city by id', () => {
-  it('return status 204  ', async () => {
-    const clientMock = {
+  it('return status 200  ', async () => {
+    const cityMock = {
       city: 'Pelotas',
       state: 'RS'
     };
 
-    const response = await request(app).post('/api/cities/').send(clientMock);
+    const response = await request(app).post('/api/cities/').send(cityMock);
 
     const res = await request(app).delete(`/api/cities/${response.body.id}`);
     const { status } = res;
     expect(status).toBe(204);
   });
-  it('returns bad', async () => {
-    const idError = '4a271b3e-2c2e-477f-ab58-4a5ebc35dec1'
-    const clientMock = {
-      city: 'Pelotas',
-      state: 'RS'
-    };
+  it('returns not found', async () => {
 
-    const response = await request(app).post('/api/cities/').send(clientMock);
+    const resp = await request(app).delete('/api/cities/04e966c9-88e0-442b-9802-397ca310d134');
+    expect(resp.body).toEqual({
+      "description": "Not found",
+      "message": "The ID: 04e966c9-88e0-442b-9802-397ca310d134 was not found",
+       "statusCode": 404,
 
-    const res = await request(app).delete(`/api/cities/${idError}`);
-    const { status } = res;
-    expect(status).toBe(404);
-
-  });
+    });
+   
+  });  
 
 });
 

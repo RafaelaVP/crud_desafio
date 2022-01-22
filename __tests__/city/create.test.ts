@@ -21,15 +21,16 @@ describe('create client', () => {
   });
   it('returns bad request ', async () => {
     const cityMock = {
-      city: '',
+      city: 'Porto Alegre',
       state:'RS'
     };
     
     const response = await request(app).post('/api/cities/').send(cityMock);
     
-    expect(response.body).toEqual([{
-      "description": "\"city\" is not allowed to be empty",
-      "name": "city"
-  }])
+    const resp = await request(app).post('/api/cities/').send(cityMock);
+    expect(resp.body).toEqual({
+      "description": "Bad request",
+      "message": " Already Exists"
+  })
   });
 });
