@@ -1,24 +1,20 @@
-import moment from 'moment';
 import { Client } from '../entities/Client';
 import { ClientRepository } from '../repository/ClientRepository';
 import { Iclients } from '../interfaces/InterfaceClient';
 import { NotFound } from '../errors/NotFound';
 import { AlreadyExists } from '../errors/AlreadyExistes';
 
-
 const clientRepository = new ClientRepository();
 const clientRepo = new ClientRepository();
 export class ClientService {
   async create(payload): Promise<Client | Error> {
-    const {name} = payload
-     const clients = await clientRepo.findOne ({
-       where: {
-         name,
-       }
-     })
-     if (clients) throw new AlreadyExists(payload);
-
-    payload.birthdate = new Date(moment(payload.birthdate, 'DD/MM/YYYY').format('YYYY-MM-DD'));
+    const { name } = payload;
+    const clients = await clientRepo.findOne({
+      where: {
+        name
+      }
+    });
+    if (clients) throw new AlreadyExists();
     return clientRepository.create(payload);
   }
 
@@ -29,7 +25,7 @@ export class ClientService {
       relations: ['city']
     };
     const [docs, count] = await clientRepository.find(filter);
-     return { docs, total: count, limit, offset: page}
+    return { docs, total: count, limit, offset: page };
   }
 
   async findOne(_id) {
@@ -40,13 +36,11 @@ export class ClientService {
 
   async update(_id, payload) {
     await this.findOne(_id);
-    return clientRepository.update( _id , payload);
-    
+    return clientRepository.update(_id, payload);
   }
 
   async delete(_id) {
     await this.findOne(_id);
     return clientRepository.delete(_id);
-    
   }
 }
