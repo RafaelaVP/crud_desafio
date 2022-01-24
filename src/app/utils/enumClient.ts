@@ -1,7 +1,7 @@
 const  enumClient = {
-    MASCULINO:'MASCULINO', 
-    FEMININO:'FEMININO', 
-    OUTRO:'OUTRO' 
+    M:'M', 
+    F:'F', 
+    X:'X' 
     
   }
 
