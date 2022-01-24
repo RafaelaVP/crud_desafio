@@ -37,8 +37,8 @@ export class CityController {
     try {
       const { id } = request.params;
       const payload = request.body;
-      const result = await cityService.update(id, payload);
-      return response.status(200).json(result);
+      await cityService.update(id, payload);
+      return response.status(200).json(payload);
     } catch (err) {
       return response.status(400).json(err);
     }
