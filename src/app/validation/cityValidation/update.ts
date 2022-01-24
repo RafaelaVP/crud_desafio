@@ -7,10 +7,9 @@ export = async (req, res, next) => {
       city: Joi.string().min(2).max(30).required(),
       state: Joi.string()
         .trim()
-        .required()
         .uppercase()
         .valid(...Object.keys(enumState))
-        
+        .required()
     });
 
     const { error } = await city.validate(req.body, { abortEarly: false });

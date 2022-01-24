@@ -12,20 +12,14 @@ describe('delete city by id', () => {
 
     const res = await request(app).delete(`/api/cities/${response.body.id}`);
     const { status } = res;
-    expect(status).toBe(200);
+    expect(status).toBe(204);
   });
   it('returns not found', async () => {
-
     const resp = await request(app).delete('/api/cities/04e966c9-88e0-442b-9802-397ca310d134');
     expect(resp.body).toEqual({
-      "description": "Not found",
-      "message": "The ID: 04e966c9-88e0-442b-9802-397ca310d134 was not found",
-       "statusCode": 404,
-
+      description: 'Not found',
+      message: 'The ID: 04e966c9-88e0-442b-9802-397ca310d134 was not found',
+      statusCode: 404
     });
-   
-  });  
-
+  });
 });
-
-

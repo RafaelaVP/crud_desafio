@@ -11,9 +11,9 @@ describe('Search all cities ', () => {
 
     const clientMock = {
       name: 'Rafaela',
-      gender: 'FEMININO',
+      gender: 'F',
       city_home: `${resCity.body.id}`,
-      birthdate: '11/10/1995',
+      birthdate: '11/10/1995'
     };
     await request(app).post('/api/clients/').send(clientMock);
     const response = await request(app).get('/api/clients/');
@@ -23,7 +23,6 @@ describe('Search all cities ', () => {
     expect(clients[0].gender).toBe(clientMock.gender);
     expect(clients[0].city_home).toBe(clientMock.city_home);
     expect(clients[0].birthdate).toBe(clientMock.birthdate);
-  
 
     const { status } = response;
     expect(status).toBe(200);
@@ -37,12 +36,30 @@ describe('Search all cities ', () => {
 
     const clientMock = {
       name: 'Rafaela',
-      gender: 'FEMININO',
+      gender: 'F',
       city_home: `${resCity.body.id}`,
-      birthdate: '11/10/1995',
+      birthdate: '11/10/1995'
     };
     await request(app).post('/api/clients/').send(clientMock);
     const response = await request(app).get('/api/clients/?id=12');
+    const { status } = response;
+    expect(status).toBe(400);
+  });
+  it('return status 200', async () => {
+    const cityMock = {
+      city: 'Porto Alegre',
+      state: 'RS'
+    };
+    const resCity = await request(app).post('/api/cities/').send(cityMock);
+
+    const clientMock = {
+      name: 'Rafaela',
+      gender: 'F',
+      city_home: `${resCity.body.id}`,
+      birthdate: '11/10/1995'
+    };
+    await request(app).post('/api/clients/').send(clientMock);
+    const response = await request(app).get('/api/clients?city_home=666');
     const { status } = response;
     expect(status).toBe(400);
   });

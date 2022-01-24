@@ -9,14 +9,14 @@ const cityRepo = new CityRepository();
 
 export class CityService {
   async create(payload): Promise<City | Error> {
-    const {city, state} = payload
-     const cities = await cityRepo.findOne ({
-       where: {
-         city,
-         state
-       }
-     })
-     if (cities) throw new AlreadyExists(payload);
+    const { city, state } = payload;
+    const cities = await cityRepo.findOne({
+      where: {
+        city,
+        state
+      }
+    });
+    if (cities) throw new AlreadyExists();
     const result = await cityRepository.create(payload);
     return result;
   }
@@ -37,21 +37,20 @@ export class CityService {
   }
 
   async update(_id, payload) {
-    const {city, state} = payload
-     const cities = await cityRepo.findOne ({
-       where: {
-         city,
-         state
-       }
-     })
-     if (cities) throw new AlreadyExists(payload);
-      await this.findOne(_id);
+    const { city, state } = payload;
+    const cities = await cityRepo.findOne({
+      where: {
+        city,
+        state
+      }
+    });
+    if (cities) throw new AlreadyExists();
+    await this.findOne(_id);
     return cityRepository.update(_id, payload);
   }
 
   async delete(_id) {
-       await this.findOne(_id);
-      return cityRepository.delete(_id);
-      
+    await this.findOne(_id);
+    return cityRepository.delete(_id);
   }
 }

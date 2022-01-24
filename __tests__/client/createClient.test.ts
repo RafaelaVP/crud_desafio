@@ -11,19 +11,18 @@ describe('create client', () => {
 
     const clientMock = {
       name: 'Rafaela',
-      gender: 'FEMININO',
+      gender: 'F',
       city_home: `${resCity.body.id}`,
-      birthdate: '11/10/1995',
-      
+      birthdate: '11/10/1995'
     };
     const response = await request(app).post('/api/clients/').send(clientMock);
     expect(response.statusCode).toEqual(201);
   });
   it('returns bad request status 400 ', async () => {
     const errorMock = {};
-    
+
     const res = await request(app).post('/api/clients/').send(errorMock);
-    
+
     expect(res.statusCode).toEqual(400);
   });
   it('returns bad request', async () => {
@@ -35,18 +34,15 @@ describe('create client', () => {
 
     const clientMock = {
       name: 'Rafaela',
-      gender: 'FEMININO',
+      gender: 'F',
       city_home: `${resCity.body.id}`,
-      birthdate: '11/10/1995',
-      
+      birthdate: '11/10/1995'
     };
-    const response = await request(app).post('/api/clients/').send(clientMock);
+    await request(app).post('/api/clients/').send(clientMock);
     const resp = await request(app).post('/api/clients/').send(clientMock);
     expect(resp.body).toEqual({
-      "description": "Bad request",
-      "message": " Already Exists"
-  })
-    
+      description: 'Bad request',
+      message: ' Already Exists'
+    });
   });
-  
 });

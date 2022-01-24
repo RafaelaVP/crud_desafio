@@ -21,7 +21,7 @@ export class Client {
   city: City;
 
   @Column()
-  birthdate: Date;
+  birthdate: string;
 
   constructor() {
     this.id = randomUUID();

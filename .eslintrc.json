@@ -51,8 +51,8 @@
             "import/prefer-default-export": "off",
             "object-curly-newline": "off",
             "@typescript-eslint/semi": ["error"],
-            "prettier/prettier": "error",
-            "eslint-disable-next-line no-param-reassign": true
+            "prettier/prettier": "error"
+           
         
     }
     

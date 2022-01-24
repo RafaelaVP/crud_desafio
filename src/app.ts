@@ -6,10 +6,8 @@ import { routes } from './app/routes';
 import { connection } from './infra/database';
 
 if (process.env.NODE_ENV !== 'test') {
-
-    connection();
-  
-  }
+  connection();
+}
 
 const app = express();
 

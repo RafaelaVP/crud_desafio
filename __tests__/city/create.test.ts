@@ -13,24 +13,22 @@ describe('create client', () => {
     expect(response.body).toHaveProperty('id');
   });
   it('returns bad request ', async () => {
-    const cityMock = {};
-    
     const res = await request(app).post('/api/cities/').send();
-    
+
     expect(res.statusCode).toEqual(400);
   });
   it('returns bad request ', async () => {
     const cityMock = {
       city: 'Porto Alegre',
-      state:'RS'
+      state: 'RS'
     };
-    
-    const response = await request(app).post('/api/cities/').send(cityMock);
-    
+
+    await request(app).post('/api/cities/').send(cityMock);
+
     const resp = await request(app).post('/api/cities/').send(cityMock);
     expect(resp.body).toEqual({
-      "description": "Bad request",
-      "message": " Already Exists"
-  })
+      description: 'Bad request',
+      message: ' Already Exists'
+    });
   });
 });

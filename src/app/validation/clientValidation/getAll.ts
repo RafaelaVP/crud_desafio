@@ -1,22 +1,18 @@
 import Joi from 'joi';
 import Extension from '@joi/date';
-import { enumClient } from '../../utils/enumClient';
 
 const JoiDate = Joi.extend(Extension);
 
 export = async (req, res, next) => {
   try {
     const client = Joi.object({
-      name: Joi.string().min(2).max(30).required(),
-      gender: Joi.string()
-        .trim()
-        .valid(...Object.keys(enumClient))
-        .required(),
-      city_home: Joi.string(),
-      birthdate: JoiDate.date().format('DD/MM/YYYY').less(Date.now()).required()
+      name: Joi.string().min(2).max(30),
+      gender: Joi.string().trim(),
+      city_home: Joi.string().uuid(),
+      birthdate: JoiDate.string()
     });
 
-    const { error } = await client.validate(req.body, { abortEarly: false });
+    const { error } = client.validate(req.body, { abortEarly: false });
     if (error) throw error;
     return next();
   } catch (error) {

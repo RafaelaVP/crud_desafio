@@ -3,16 +3,15 @@ import { enumState } from '../../utils/enumState';
 
 export = async (req, res, next) => {
   try {
-    const city = Joi.object({
-      city: Joi.string().trim().required(),
+    const cities = Joi.object({
+      city: Joi.string().trim().optional(),
       state: Joi.string()
         .trim()
-        .uppercase()
-        .valid(...Object.keys(enumState))
-        .required()
+        .optional()
+        .valid(...Object.values(enumState))
     });
 
-    const { error } = await city.validate(req.body, { abortEarly: false });
+    const { error } = await cities.validate(req.body, { abortEarly: false });
     if (error) throw error;
     return next();
   } catch (error) {
