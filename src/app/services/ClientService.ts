@@ -18,14 +18,9 @@ export class ClientService {
     return clientRepository.create(payload);
   }
 
-  async findAll({ page = 1, limit = 100, ...payload }): Promise<Iclients> {
-    const filter = {
-      where: payload,
-      take: limit,
-      relations: ['city']
-    };
-    const [docs, count] = await clientRepository.find(filter);
-    return { docs, total: count, limit, offset: page };
+  async findAll({ relations = 'city', ...payload }): Promise<Iclients> {
+    const result = await clientRepository.findAll({ relations, ...payload });
+    return result;
   }
 
   async findOne(_id) {
