@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { paginatedSerialize, serialize } from '../serialize/clientSerialize';
+import { paginatedSerialize } from '../serialize/clientSerialize';
 import { ClientService } from '../services/ClientService';
 
 const clientService = new ClientService();
@@ -28,27 +28,27 @@ export class ClientController {
       const result = await clientService.findOne(request.params.id);
       return response.status(200).json(result);
     } catch (error) {
-       return response.status(400).json(error);
-     }
-   }
+      return response.status(400).json(error);
+    }
+  }
 
   async update(request: Request, response: Response) {
     try {
       const { id } = request.params;
       const payload = request.body;
       await clientService.update(id, payload);
-      return response.status(204).end();
+      return response.status(200).json(payload);
     } catch (err) {
-      return response.status(400).json({message:'error trying to update with city id.'});
+      return response.status(400).json({ message: 'error trying to update with city id.' });
     }
   }
 
   async delete(request: Request, response: Response) {
     try {
       const result = await clientService.delete(request.params);
-      return response.status(200).json(result);
+      return response.status(204).json(result);
     } catch (error) {
-      return response.status(400).json(error)
+      return response.status(400).json(error);
     }
   }
 }

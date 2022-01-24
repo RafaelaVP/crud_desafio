@@ -10,9 +10,7 @@ export class CityController {
     try {
       const result = await cityService.create(request.body);
       return response.status(201).json(result);
-    
     } catch (error) {
-      
       return response.status(400).json(error);
     }
   }
@@ -40,7 +38,7 @@ export class CityController {
       const { id } = request.params;
       const payload = request.body;
       const result = await cityService.update(id, payload);
-      return response.status(204).end();
+      return response.status(200).json(result);
     } catch (err) {
       return response.status(400).json(err);
     }
@@ -48,9 +46,8 @@ export class CityController {
 
   async delete(request: Request, response: Response) {
     try {
-      
       await cityService.delete(request.params.id);
-      return response.status(200).json({ });
+      return response.status(204).json({});
     } catch (error) {
       return response.status(400).json(error);
     }
