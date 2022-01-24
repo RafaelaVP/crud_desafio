@@ -1,7 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 import { enumState } from '../../../app/utils/enumState';
 
-
 export class CreateCities1641919616352 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
@@ -24,7 +23,6 @@ export class CreateCities1641919616352 implements MigrationInterface {
             name: 'state',
             type: 'varchar',
             enum: Object.keys(enumState)
-            
           }
         ]
       })

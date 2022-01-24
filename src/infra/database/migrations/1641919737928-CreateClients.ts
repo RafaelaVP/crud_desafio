@@ -1,7 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 import { enumClient } from '../../../app/utils/enumClient';
 
-
 export class CreateClients1641919737928 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
@@ -31,7 +30,7 @@ export class CreateClients1641919737928 implements MigrationInterface {
           },
           {
             name: 'birthdate',
-            type: 'date'
+            type: 'varchar'
           }
         ],
         foreignKeys: [
