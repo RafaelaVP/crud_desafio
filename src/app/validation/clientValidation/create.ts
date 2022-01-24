@@ -11,7 +11,7 @@ export = async (req, res, next) => {
       name: Joi.string().min(2).max(30).required(),
       gender: Joi.string().trim().required().valid(...Object.keys(enumClient)),
       city_home: Joi.string(),
-      birthdate: JoiDate.date().format('DD/MM/YYYY').required(),
+      birthdate: JoiDate.date().format('DD/MM/YYYY').less(Date.now()).required(),
       age: Joi.number()
     });
 
