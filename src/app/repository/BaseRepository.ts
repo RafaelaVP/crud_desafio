@@ -11,9 +11,14 @@ export class BaseRepository {
     return getConnection(process.env.NODE_ENV).getRepository(this.entity).save(payload);
   }
 
-  async find(payload): Promise<any> {
-    const result = await getConnection(process.env.NODE_ENV).getRepository(this.entity).findAndCount(payload);
-    return result;
+  async findAll({ page = 1, limit = 100, relations, ...payload }): Promise<any> {
+    const filter = {
+      where: payload,
+      take: limit,
+      ...(relations && { relations: [relations] })
+    };
+    const [docs, count] = await getConnection(process.env.NODE_ENV).getRepository(this.entity).findAndCount(filter);
+    return { docs, total: count, limit, offset: page };
   }
 
   async findOne(_id): Promise<any | Error> {
