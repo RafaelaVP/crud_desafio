@@ -19,7 +19,7 @@ export class ClientController {
       const result = await clientService.findAll(request.query);
       return response.status(200).json(paginatedSerialize(result));
     } catch (err) {
-      return response.status(400).json(err);
+      return response.status(400).json(err.message);
     }
   }
 
@@ -45,8 +45,8 @@ export class ClientController {
 
   async delete(request: Request, response: Response) {
     try {
-      const result = await clientService.delete(request.params);
-      return response.status(204).json(result);
+      await clientService.delete(request.params);
+      return response.status(204).json({});
     } catch (error) {
       return response.status(400).json(error);
     }
