@@ -1,8 +1,7 @@
-const  enumClient = {
-    M:'M', 
-    F:'F', 
-    X:'X' 
-    
-  }
+const enumClient = {
+  M: 'Masculino',
+  F: 'Feminino',
+  Outro: 'Outro'
+};
 
-  export {enumClient};
+export { enumClient };
