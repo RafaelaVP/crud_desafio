@@ -10,7 +10,7 @@ const cityRepo = new CityRepository();
 export class CityService {
   async create(payload): Promise<City | Error> {
     const {city, state} = payload
-     const cities = await cityRepo.findspecial ({
+     const cities = await cityRepo.findOne ({
        where: {
          city,
          state
@@ -38,7 +38,7 @@ export class CityService {
 
   async update(_id, payload) {
     const {city, state} = payload
-     const cities = await cityRepo.findspecial ({
+     const cities = await cityRepo.findOne ({
        where: {
          city,
          state

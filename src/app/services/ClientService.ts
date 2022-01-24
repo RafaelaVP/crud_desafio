@@ -11,7 +11,7 @@ const clientRepo = new ClientRepository();
 export class ClientService {
   async create(payload): Promise<Client | Error> {
     const {name} = payload
-     const clients = await clientRepo.findspecial ({
+     const clients = await clientRepo.findOne ({
        where: {
          name,
        }
