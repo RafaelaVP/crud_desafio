@@ -21,13 +21,9 @@ export class CityService {
     return result;
   }
 
-  async findAll({ page = 1, limit = 100, ...payload }): Promise<Icities> {
-    const filter = {
-      where: payload,
-      take: limit
-    };
-    const [docs, count] = await cityRepository.find(filter);
-    return { docs, total: count, limit, offset: page };
+  async findAll(payload): Promise<Icities> {
+    const result = await cityRepository.findAll(payload);
+    return result;
   }
 
   async findOne(_id): Promise<City | Error> {
