@@ -8,6 +8,7 @@ export = async (req, res, next) => {
       state: Joi.string()
         .trim()
         .required()
+        .uppercase()
         .valid(...Object.keys(enumState))
         
     });
