@@ -16,7 +16,7 @@ export class BaseRepository {
     return result;
   }
 
-  async findOne(_id: string): Promise<any | Error> {
+  async findOne(_id): Promise<any | Error> {
     const result = await getConnection(process.env.NODE_ENV).getRepository(this.entity).findOne(_id);
     return result;
   }
